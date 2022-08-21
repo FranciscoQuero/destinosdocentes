@@ -11,7 +11,7 @@ class SchemaTravelDistance(BaseModel):
 
     class Config:
         schema_extra = {
-            "example": {"from": "Abla", "to": "Abla", "time": 0, "distance": 0}
+            'example': {'from': 'Abla', 'to': 'Abla', 'time': 0, 'distance': 0}
         }
 
 
@@ -23,17 +23,17 @@ class UpdateTravelDistanceModel(BaseModel):
 
     class Config:
         schema_extra = {
-            "example": {"from": "Abla", "to": "Abla", "time": 0, "distance": 0}
+            'example': {'from': 'Abla', 'to': 'Abla', 'time': 0, 'distance': 0}
         }
 
 
 def ResponseModel(data, message):
     return {
-        "data": [data],
-        "code": 200,
-        "message": message,
+        'data': [data],
+        'code': 200,
+        'message': message,
     }
 
 
 def ErrorResponseModel(error, code, message):
-    return {"error": error, "code": code, "message": message}
+    return {'error': error, 'code': code, 'message': message}
