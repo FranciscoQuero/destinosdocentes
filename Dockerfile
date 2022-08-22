@@ -11,4 +11,4 @@ RUN pip install -r requirements.txt
 
 COPY . ./code/
 
-ENTRYPOINT python app/main.py
+ENTRYPOINT python manage.py
