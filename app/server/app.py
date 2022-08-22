@@ -10,11 +10,3 @@ app.include_router(travel_destination_router, tags=['TravelDestination'], prefix
 @app.get('/', tags=['root'])
 async def read_root():
     return {'message': 'Hello world'}
-
-
-@router.get('/{from_town}/{to_town}', response_description='Travel between two towns')
-async def get_travel_destination(from_town, to_town):
-    travel_destination = await retrieve_travel_destination(from_town, to_town)
-    if travel_destination:
-        return ResponseModel(travel_destination, 'Travel info')
-    return ErrorResponseModel('An error occurred', 404, 'No travel found.')
