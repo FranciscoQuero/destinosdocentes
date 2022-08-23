@@ -18,19 +18,6 @@ services:
       - "27017:27017"
     volumes:
       - taskdb:/data/db
-  frontend:
-      build: ./frontend
-      ports:
-        - "8080:80"
-      volumes:
-        - ./Caddyfile:/etc/caddy/Caddyfile
-        - caddy-data:/data
-        - caddy-config:/config
-      depends_on:
-        - api
-
 
 volumes:
     taskdb:
-    caddy-data:
-    caddy-config:
