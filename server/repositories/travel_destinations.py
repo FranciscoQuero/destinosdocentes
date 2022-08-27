@@ -6,7 +6,7 @@ client = motor.motor_asyncio.AsyncIOMotorClient(os.environ['DB_URL'])
 
 database = client.travel_destinations
 
-travel_destinations_collection = database.get_collection("travel_destinations_collections")
+travel_destinations_collection = database.get_collection("traveldestinationscollections")
 
 
 def travel_destination_helper(travel_destination) -> dict:
