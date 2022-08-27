@@ -19,6 +19,5 @@ services:
     volumes:
       - taskdb:/data/db
 
-
 volumes:
     taskdb:
