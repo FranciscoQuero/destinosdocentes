@@ -4,9 +4,9 @@ import motor.motor_asyncio
 
 client = motor.motor_asyncio.AsyncIOMotorClient(os.environ['DB_URL'])
 
-database = client.travel_destinations
+database = client.traveldestinations
 
-travel_destinations_collection = database.get_collection("travel_destinations_collections")
+travel_destinations_collection = database.get_collection("traveldestinationscollections")
 
 
 def travel_destination_helper(travel_destination) -> dict:
@@ -27,10 +27,3 @@ async def retrieve_n_nearest_travel_destinations(from_town: str, limit: int = 0)
 
     if travel_destinations:
         return [travel_destination_helper(travel_destination) async for travel_destination in travel_destinations]
-
-
-async def add_travel_destination(travel_destination_data: dict) -> dict:
-    search_dict = {'from': travel_destination_data['from'], 'to': travel_destination_data['to']}
-    travel = await travel_destinations_collection.insert_one(travel_destination_data)
-    new_travel = await travel_destinations_collection.find_one(search_dict)
-    return travel_destination_helper(new_travel)
