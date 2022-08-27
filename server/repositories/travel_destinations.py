@@ -4,7 +4,7 @@ import motor.motor_asyncio
 
 client = motor.motor_asyncio.AsyncIOMotorClient(os.environ['DB_URL'])
 
-database = client.travel_destinations
+database = client.traveldestinations
 
 travel_destinations_collection = database.get_collection("traveldestinationscollections")
 
