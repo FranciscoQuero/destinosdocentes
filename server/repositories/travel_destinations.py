@@ -11,7 +11,7 @@ travel_destinations_collection = database.get_collection("traveldestinationscoll
 
 def travel_destination_helper(travel_destination) -> dict:
     return {'from': travel_destination['from'], 'to': travel_destination['to'], 'time': str(travel_destination['time']),
-            'distance': str(travel_destination['distance'])}
+            'distance': str(travel_destination['distance']), 'state': travel_destination['state']}
 
 
 async def retrieve_travel_destination(from_town: str, to_town: str) -> dict:

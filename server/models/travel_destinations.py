@@ -8,10 +8,11 @@ class SchemaTravelDistance(BaseModel):
     to_town: constr(strict=True) = Field(..., alias='to')
     travel_time: confloat() = Field(..., alias='time')
     distance: confloat() = Field(...)
+    state: constr(strict=True) = Field(...)
 
     class Config:
         schema_extra = {
-            'example': {'from': 'Abla', 'to': 'Abla', 'time': 0, 'distance': 0}
+            'example': {'from': 'Abla', 'to': 'Abla', 'time': 0, 'distance': 0, 'state': 'Almería'}
         }
 
 
