@@ -27,3 +27,12 @@ async def retrieve_n_nearest_travel_destinations(from_town: str, limit: int = 0)
 
     if travel_destinations:
         return [travel_destination_helper(travel_destination) async for travel_destination in travel_destinations]
+
+
+async def retrieve_destinations_from_list(from_town: str, sipri_destinations: str) -> [dict]:
+    destinations_list = sipri_destinations.split(',')
+    search_dict = {'from': from_town, 'to': {'$in': destinations_list}}
+    travel_destinations = travel_destinations_collection.find(search_dict).sort('time')
+    print(travel_destinations)
+    if travel_destinations:
+        return [travel_destination_helper(travel_destination) async for travel_destination in travel_destinations]

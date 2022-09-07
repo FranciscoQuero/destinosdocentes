@@ -1,8 +1,8 @@
-from fastapi import APIRouter, Body
-from fastapi.encoders import jsonable_encoder
+from fastapi import APIRouter
 
-from server.repositories.travel_destinations import retrieve_travel_destination, retrieve_n_nearest_travel_destinations
-from server.models.travel_destinations import ErrorResponseModel, ResponseModel, SchemaTravelDistance
+from server.repositories.travel_destinations import retrieve_n_nearest_travel_destinations, \
+    retrieve_destinations_from_list
+from server.models.travel_destinations import ErrorResponseModel, ResponseModel
 
 
 router = APIRouter()
@@ -16,9 +16,11 @@ async def get_n_nearest_travel_destinations(from_town: str, limit: int = 120):
     return ErrorResponseModel('An error occurred', 404, 'No travel found.')
 
 
-@router.get('/{from_town}/{to_town}', response_description='Travel between two towns')
-async def get_travel_destination(from_town: str, to_town: str):
-    travel_destination = await retrieve_travel_destination(from_town, to_town)
-    if travel_destination:
-        return ResponseModel(travel_destination, 'Travel info')
+@router.get('/{from_town}/sipri', response_description='Sort destinations in a list based on their distance from a town')
+async def get_sorter_sipri_travel_destinations(from_town: str, sipri_towns: str):
+    travel_destinations = await retrieve_destinations_from_list(from_town, sipri_towns)
+
+    if travel_destinations:
+        print(ResponseModel(travel_destinations, 'Travel info'))
+        return ResponseModel(travel_destinations, 'Travel info')
     return ErrorResponseModel('An error occurred', 404, 'No travel found.')
