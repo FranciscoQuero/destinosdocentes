@@ -1,5 +1,5 @@
 fastapi~=0.70.1
 uvicorn~=0.16.0
 motor
-pymongo~=3.12.3
+pymongo[tls,srv]~=3.12.3
 pydantic~=1.9.2
